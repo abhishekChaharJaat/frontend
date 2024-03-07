@@ -1,0 +1,89 @@
+import React, { useState } from "react";
+import "../css/signup.css";
+import { useNavigate } from "react-router-dom";
+
+// import { Link } from "react-router-dom";
+
+export default function Signup() {
+  const navigate = useNavigate();
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch("http://localhost:2000/api/auth/signup", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        name: credentials.name,
+        email: credentials.email,
+        password: credentials.password,
+      }),
+    });
+    const json = await response.json();
+    // console.log(json);
+    if (json.signup) {
+      localStorage.setItem("token", json.token);
+      navigate("/login");
+      window.alert("Signup Successfull");
+    }
+  };
+
+  const onchange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+  return (
+    <div>
+      <div className="signup-box" onSubmit={handelSubmit}>
+        <form className="form">
+          <h2 className="formheading">Abhishek's App</h2>
+          <input
+            className="input"
+            type="text"
+            id="name"
+            name="name"
+            onChange={onchange}
+            placeholder="Full Name"
+          />
+          <input
+            className="input"
+            type="email"
+            id="username"
+            name="email"
+            onChange={onchange}
+            placeholder="Email"
+          />
+          <input
+            className="input"
+            type="password"
+            id="password"
+            name="password"
+            onChange={onchange}
+            placeholder="password"
+          />
+          <input
+            className="input"
+            type="password"
+            id="confirm_password"
+            name="confirm_password"
+            onChange={onchange}
+            placeholder="confirm password"
+          />
+          <button type="submit" className="login-signup-btn">
+            Signup
+          </button>
+          {/* <p className="signup-link">
+            I already have an Account
+            <Link to="/login">login</Link>
+          </p> */}
+        </form>
+      </div>
+    </div>
+  );
+}

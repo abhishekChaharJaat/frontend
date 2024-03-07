@@ -1,0 +1,11 @@
+.banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  background-color: rgb(229, 253, 253);
+}
+.banner h2 {
+  font-weight: bold;
+}
