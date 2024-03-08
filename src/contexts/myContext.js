@@ -6,9 +6,24 @@ const MyContext = (props) => {
   let people = [];
 
   const [data, setData] = useState(people);
+  const [userName, setUserName] = useState("");
+
+  // get user name
+  const getUserName = async () => {
+    const response = await fetch(`${serverPort}/api/notes/fetchUserName`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/jssson",
+        "auth-token": localStorage.getItem("token"),
+      },
+    });
+    let details = await response.json();
+    setUserName(details.name);
+  };
 
   // get all notes
   const getAllNotes = async () => {
+    getUserName();
     const response = await fetch(`${serverPort}/api/notes/fetchallnotes`, {
       method: "GET",
       headers: {
@@ -48,7 +63,15 @@ const MyContext = (props) => {
   // Edit person
 
   return (
-    <myContext.Provider value={{ data, getAllNotes, addPerson, deletePerson }}>
+    <myContext.Provider
+      value={{
+        data,
+        getAllNotes,
+        addPerson,
+        deletePerson,
+        userName,
+      }}
+    >
       {props.children}
     </myContext.Provider>
   );

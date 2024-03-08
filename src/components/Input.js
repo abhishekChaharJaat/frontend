@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { myContext } from "../contexts/myContext";
 
 const Input = () => {
-  const { addPerson } = useContext(myContext);
+  const { addPerson, userName } = useContext(myContext);
   const [person, setPerson] = useState({ title: "", description: "", tag: "" });
   const add = () => {
     if (person.description === "" || person.title === "" || person.tag === "") {
@@ -19,7 +19,10 @@ const Input = () => {
   return (
     <div className="input-div">
       <form className="details-form">
-        <h3 className="create-note-heading">Create your notes here</h3>
+        <h3 className="create-note-heading">
+          Hello <span>{userName}</span> <br />
+          Create your notes here...
+        </h3>
         <label className="input-labels">Title:</label>
         <input
           type="text"

@@ -43,8 +43,8 @@ export default function Login() {
   return (
     <div>
       <div className="login-box" id="box">
-        <form className="form" onSubmit={handelSubmit}>
-          <h3 className="formheading">Abhishek's App</h3>
+        <form className="form login" onSubmit={handelSubmit}>
+          <h3 className="formheading">Login</h3>
           <input
             className="input"
             type="email"

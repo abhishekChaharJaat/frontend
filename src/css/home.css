@@ -15,7 +15,13 @@
   text-align: center;
   font-weight: bold;
   font: poppins;
-  color: rgb(2, 101, 2);
+  font-size: 25px;
+  color: rgb(21, 105, 21);
+}
+.create-note-heading span {
+  color: rgb(240, 158, 6);
+  font-size: 30px;
+  font-family: poppins;
 }
 .input-details {
   border: 1.5px solid black;

@@ -42,15 +42,15 @@ export default function Signup() {
   return (
     <div>
       <div className="signup-box" onSubmit={handelSubmit}>
-        <form className="form">
-          <h2 className="formheading">Abhishek's App</h2>
+        <form className="form signup">
+          <h2 className="formheading">Signup</h2>
           <input
             className="input"
             type="text"
             id="name"
             name="name"
             onChange={onchange}
-            placeholder="Full Name"
+            placeholder="Your Name"
           />
           <input
             className="input"
