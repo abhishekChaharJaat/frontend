@@ -7,7 +7,7 @@ const ComC = () => {
 
   useEffect(() => {
     getAllNotes();
-  }, []);
+  });
   return (
     <>
       {data.map((user) => {
