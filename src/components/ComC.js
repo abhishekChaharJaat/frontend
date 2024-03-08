@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { myContext } from "../contexts/myContext";
 import "../css/home.css";
 
 const ComC = () => {
-  const { data, deletePerson } = useContext(myContext);
+  const { data, deletePerson, getAllNotes } = useContext(myContext);
 
+  useEffect(() => {
+    getAllNotes();
+  }, []);
   return (
     <>
       {data.map((user) => {

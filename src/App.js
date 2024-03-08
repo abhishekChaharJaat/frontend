@@ -9,19 +9,21 @@ import Myapp from "./components/Myapp";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyContext from "./contexts/myContext";
 import Signup from "./components/Signup";
+import PagenotFound from "./components/PagenotFound";
 function App() {
   return (
     <div className="container">
       <BrowserRouter>
         <MyContext>
-          <Navbar title1="Chahar" />
+          <Navbar title1="Notes" />
           <Routes>
             <Route exact path="/" element={<Myapp />} />
-            <Route exact path="/home" element={<Home />} />
+            <Route exact path="/notes" element={<Home />} />
             <Route exact path="/about" element={<About />} />
             <Route exact path="/blog" element={<Blog />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<Signup />} />
+            <Route exact path="/*" element={<PagenotFound />} />
           </Routes>
         </MyContext>
       </BrowserRouter>

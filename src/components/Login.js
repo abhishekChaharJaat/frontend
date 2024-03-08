@@ -29,7 +29,7 @@ export default function Login() {
 
     if (json.success) {
       localStorage.setItem("token", json.token);
-      navigate("/home");
+      navigate("/notes");
       getAllNotes();
     } else {
       alert("Login failed :  Please enter correct credentials");

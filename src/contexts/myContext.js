@@ -1,15 +1,9 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import serverPort from "./serverports";
 const myContext = createContext();
 
 const MyContext = (props) => {
-  let people = [
-    {
-      title: 2242000011,
-      description: "Creola Katherine Johnson",
-      tag: "mathematician",
-    },
-  ];
+  let people = [];
 
   const [data, setData] = useState(people);
 
@@ -26,7 +20,7 @@ const MyContext = (props) => {
     setData(details);
   };
 
-  // add a person
+  // add a Note
   const addPerson = async (title, description, tag) => {
     await fetch(`${serverPort}/api/notes/addnotes`, {
       method: "POST",
@@ -39,7 +33,7 @@ const MyContext = (props) => {
     getAllNotes();
   };
 
-  //delete Person
+  //delete note
   const deletePerson = async (id) => {
     await fetch(`${serverPort}/api/notes/deletenotes/${id}`, {
       method: "DELETE",

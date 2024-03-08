@@ -16,7 +16,7 @@ const Navbar = (props) => {
         <ul className="navlinks">
           {localStorage.getItem("token") ? (
             <li>
-              <Link to="/home">{props.title1}</Link>
+              <Link to="/notes">{props.title1}</Link>
             </li>
           ) : (
             <li>
@@ -60,7 +60,7 @@ const Navbar = (props) => {
 export default Navbar;
 
 Navbar.defaultProps = {
-  title1: "Chahar",
+  title1: "Notes",
   title2: "Home",
   title3: "About",
   title4: "Blog",
