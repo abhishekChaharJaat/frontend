@@ -14,7 +14,6 @@
   padding: 5px;
   text-align: center;
   font-weight: bold;
-  font: poppins;
   font-size: 25px;
   color: rgb(21, 105, 21);
 }
@@ -22,6 +21,7 @@
   color: rgb(240, 158, 6);
   font-size: 30px;
   font-family: poppins;
+  text-decoration: underline;
 }
 .input-details {
   border: 1.5px solid black;
@@ -98,4 +98,13 @@
   cursor: pointer;
   font-size: 20px;
   padding: 4px 10px;
+}
+
+@media screen and (max-width: 640px) {
+  .create-note-heading {
+    font-size: 20px;
+  }
+  .create-note-heading span {
+    font-size: 23px;
+  }
 }
