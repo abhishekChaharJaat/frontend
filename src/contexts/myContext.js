@@ -16,7 +16,7 @@ const MyContext = (props) => {
   // get all notes
   const getAllNotes = async () => {
     const response = await fetch(
-      "http://localhost:2000/api/notes/fetchallnotes",
+      "https://backend-9ua4.onrender.com//api/notes/fetchallnotes",
       {
         method: "GET",
         headers: {
@@ -31,7 +31,7 @@ const MyContext = (props) => {
 
   // add a person
   const addPerson = async (title, description, tag) => {
-    await fetch(`http://localhost:2000/api/notes/addnotes`, {
+    await fetch(`https://backend-9ua4.onrender.com//api/notes/addnotes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
