@@ -15,17 +15,20 @@ export default function Signup() {
   const handelSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:2000/api/auth/signup", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        name: credentials.name,
-        email: credentials.email,
-        password: credentials.password,
-      }),
-    });
+    const response = await fetch(
+      "https://backend-9ua4.onrender.com/api/auth/signup",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          name: credentials.name,
+          email: credentials.email,
+          password: credentials.password,
+        }),
+      }
+    );
     const json = await response.json();
     // console.log(json);
     if (json.signup) {
