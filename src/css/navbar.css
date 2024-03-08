@@ -30,8 +30,8 @@
 
 .nav-form {
   height: 100%;
-  padding: 20px;
-  gap: 20px;
+  padding: 10px;
+  gap: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,4 +59,29 @@
 }
 .nav-button:active {
   transform: scale(0.9);
+}
+
+@media screen and (max-width: 768px) {
+  .nav-button {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+  .navlinks {
+    padding: 20px;
+    gap: 30px;
+  }
+  .navlinks li a {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .nav-button {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+  .navlinks {
+    padding: 10px;
+    gap: 20px;
+  }
 }

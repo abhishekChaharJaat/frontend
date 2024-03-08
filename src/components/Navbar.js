@@ -34,7 +34,7 @@ const Navbar = (props) => {
           </li>
         </ul>
         <form className="nav-form">
-          <input className="nav-input" type="search" placeholder="Search" />
+          {/* <input className="nav-input" type="search" placeholder="Search" /> */}
           {localStorage.getItem("token") ? (
             ""
           ) : (
