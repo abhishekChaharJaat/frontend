@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../css/signup.css";
 import { useNavigate } from "react-router-dom";
+import serverPort from "../contexts/serverports";
 
 // import { Link } from "react-router-dom";
 
@@ -15,20 +16,17 @@ export default function Signup() {
   const handelSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(
-      "https://backend-9ua4.onrender.com/api/auth/signup",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          name: credentials.name,
-          email: credentials.email,
-          password: credentials.password,
-        }),
-      }
-    );
+    const response = await fetch(`${serverPort}/api/auth/signup`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        name: credentials.name,
+        email: credentials.email,
+        password: credentials.password,
+      }),
+    });
     const json = await response.json();
     // console.log(json);
     if (json.signup) {

@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-
+import serverPort from "./serverports";
 const myContext = createContext();
 
 const MyContext = (props) => {
@@ -15,23 +15,20 @@ const MyContext = (props) => {
 
   // get all notes
   const getAllNotes = async () => {
-    const response = await fetch(
-      "https://backend-9ua4.onrender.com/api/notes/fetchallnotes",
-      {
-        method: "GET",
-        headers: {
-          "content-type": "application/jssson",
-          "auth-token": localStorage.getItem("token"),
-        },
-      }
-    );
+    const response = await fetch(`${serverPort}/api/notes/fetchallnotes`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/jssson",
+        "auth-token": localStorage.getItem("token"),
+      },
+    });
     let details = await response.json();
     setData(details);
   };
 
   // add a person
   const addPerson = async (title, description, tag) => {
-    await fetch(`https://backend-9ua4.onrender.com/api/notes/addnotes`, {
+    await fetch(`${serverPort}/api/notes/addnotes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,16 +41,13 @@ const MyContext = (props) => {
 
   //delete Person
   const deletePerson = async (id) => {
-    await fetch(
-      `https://backend-9ua4.onrender.com/api/notes/deletenotes/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
-        },
-      }
-    );
+    await fetch(`${serverPort}/api/notes/deletenotes/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
+    });
     getAllNotes();
   };
 

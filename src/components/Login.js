@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import "../css/signup.css";
 import { useNavigate } from "react-router-dom";
 import { myContext } from "../contexts/myContext";
+import serverPort from "../contexts/serverports";
 
 export default function Login() {
   const { getAllNotes } = useContext(myContext);
@@ -14,19 +15,16 @@ export default function Login() {
   const handelSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(
-      "https://backend-9ua4.onrender.com/api/auth/login",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          email: credentials.email,
-          password: credentials.password,
-        }),
-      }
-    );
+    const response = await fetch(`${serverPort}/api/auth/login`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password,
+      }),
+    });
     const json = await response.json();
 
     if (json.success) {

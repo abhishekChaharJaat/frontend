@@ -19,6 +19,7 @@ const Input = () => {
   return (
     <div className="input-div">
       <form className="details-form">
+        <h3 className="create-note-heading">Create your notes here</h3>
         <label className="input-labels">Title:</label>
         <input
           type="text"

@@ -50,7 +50,7 @@
   color: rgb(6, 6, 132);
   font-weight: bold;
   padding: 6px 12px;
-  font-family: cursive;
+  font-family: poppins;
   border: none;
   border-radius: 4px;
   background-color: rgb(172, 181, 181);
@@ -63,8 +63,8 @@
 
 @media screen and (max-width: 768px) {
   .nav-button {
-    font-size: 13px;
-    padding: 5px 10px;
+    font-size: 14px;
+    padding: 8px 8px;
   }
   .navlinks {
     padding: 20px;
@@ -77,8 +77,7 @@
 
 @media screen and (max-width: 640px) {
   .nav-button {
-    font-size: 10px;
-    padding: 3px 6px;
+    font-size: 12px;
   }
   .navlinks {
     padding: 10px;
