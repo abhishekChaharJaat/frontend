@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
 
     const response = await fetch(
-      "https://backend-9ua4.onrender.com//api/auth/login",
+      "https://backend-9ua4.onrender.com/api/auth/login",
       {
         method: "POST",
         headers: {
