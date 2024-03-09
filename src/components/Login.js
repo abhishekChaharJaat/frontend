@@ -3,10 +3,11 @@ import "../css/signup.css";
 import { useNavigate } from "react-router-dom";
 import { myContext } from "../contexts/myContext";
 import serverPort from "../contexts/serverports";
+import Loader from "../components/Loader";
 
 export default function Login() {
   const { getAllNotes } = useContext(myContext);
-
+  const [loading, setLoading] = useState(false);
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -14,7 +15,7 @@ export default function Login() {
   const navigate = useNavigate();
   const handelSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const response = await fetch(`${serverPort}/api/auth/login`, {
       method: "POST",
       headers: {
@@ -34,6 +35,7 @@ export default function Login() {
     } else {
       alert("Login failed :  Please enter correct credentials");
     }
+    setLoading(false);
   };
 
   const onchange = (e) => {
@@ -42,35 +44,39 @@ export default function Login() {
 
   return (
     <div>
-      <div className="login-box" id="box">
-        <form className="form login" onSubmit={handelSubmit}>
-          <h3 className="formheading">Login</h3>
-          <input
-            className="input"
-            type="email"
-            name="email"
-            value={credentials.email}
-            onChange={onchange}
-            placeholder="Email"
-          />
-          <input
-            className="input"
-            type="password"
-            name="password"
-            value={credentials.password}
-            onChange={onchange}
-            placeholder="Password"
-          />
-          <div className="forgot-box">
-            <a className="forgot" href="/">
-              Forgot password
-            </a>
-          </div>
-          <button type="submit" className="login-signup-btn">
-            Login
-          </button>
-        </form>
-      </div>
+      {loading && <Loader />}
+
+      {!loading && (
+        <div className="login-box" id="box">
+          <form className="form login" onSubmit={handelSubmit}>
+            <h3 className="formheading">Login</h3>
+            <input
+              className="input"
+              type="email"
+              name="email"
+              value={credentials.email}
+              onChange={onchange}
+              placeholder="Email"
+            />
+            <input
+              className="input"
+              type="password"
+              name="password"
+              value={credentials.password}
+              onChange={onchange}
+              placeholder="Password"
+            />
+            <div className="forgot-box">
+              <a className="forgot" href="/">
+                Forgot password
+              </a>
+            </div>
+            <button type="submit" className="login-signup-btn">
+              Login
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

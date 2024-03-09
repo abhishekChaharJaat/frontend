@@ -6,6 +6,7 @@ const MyContext = (props) => {
   let people = [];
 
   const [data, setData] = useState(people);
+  const [loading, setLoading] = useState(false);
   const [userName, setUserName] = useState("");
 
   // get user name
@@ -37,6 +38,7 @@ const MyContext = (props) => {
 
   // add a Note
   const addPerson = async (title, description, tag) => {
+    setLoading(true);
     await fetch(`${serverPort}/api/notes/addnotes`, {
       method: "POST",
       headers: {
@@ -46,10 +48,12 @@ const MyContext = (props) => {
       body: JSON.stringify({ title, description, tag }),
     });
     getAllNotes();
+    setLoading(false);
   };
 
   //delete note
   const deletePerson = async (id) => {
+    setLoading(true);
     await fetch(`${serverPort}/api/notes/deletenotes/${id}`, {
       method: "DELETE",
       headers: {
@@ -58,6 +62,7 @@ const MyContext = (props) => {
       },
     });
     getAllNotes();
+    setLoading(false);
   };
 
   // Edit person
@@ -66,6 +71,7 @@ const MyContext = (props) => {
     <myContext.Provider
       value={{
         data,
+        loading,
         getAllNotes,
         addPerson,
         deletePerson,
