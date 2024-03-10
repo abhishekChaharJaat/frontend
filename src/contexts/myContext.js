@@ -1,14 +1,12 @@
 import React, { createContext, useState } from "react";
-import serverPort from "./serverports";
-const myContext = createContext();
+import serverPort from "./serverPorts";
+
+const dataContext = createContext();
 
 const MyContext = (props) => {
-  let people = [];
-
-  const [data, setData] = useState(people);
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
   const [userName, setUserName] = useState("");
-
+  const [loading, setLoading] = useState(false);
   // get user name
   const getUserName = async () => {
     const response = await fetch(`${serverPort}/api/notes/fetchUserName`, {
@@ -22,7 +20,7 @@ const MyContext = (props) => {
     setUserName(details.name);
   };
 
-  // get all notes
+  // Fetch all notes..
   const getAllNotes = async () => {
     getUserName();
     const response = await fetch(`${serverPort}/api/notes/fetchallnotes`, {
@@ -37,7 +35,7 @@ const MyContext = (props) => {
   };
 
   // add a Note
-  const addPerson = async (title, description, tag) => {
+  const addNote = async (title, description, tag) => {
     setLoading(true);
     await fetch(`${serverPort}/api/notes/addnotes`, {
       method: "POST",
@@ -52,7 +50,7 @@ const MyContext = (props) => {
   };
 
   //delete note
-  const deletePerson = async (id) => {
+  const deleteNote = async (id) => {
     setLoading(true);
     await fetch(`${serverPort}/api/notes/deletenotes/${id}`, {
       method: "DELETE",
@@ -61,27 +59,17 @@ const MyContext = (props) => {
         "auth-token": localStorage.getItem("token"),
       },
     });
-    getAllNotes();
     setLoading(false);
   };
 
-  // Edit person
-
   return (
-    <myContext.Provider
-      value={{
-        data,
-        loading,
-        getAllNotes,
-        addPerson,
-        deletePerson,
-        userName,
-      }}
+    <dataContext.Provider
+      value={{ data, userName, loading, getAllNotes, addNote, deleteNote }}
     >
       {props.children}
-    </myContext.Provider>
+    </dataContext.Provider>
   );
 };
 
 export default MyContext;
-export { myContext };
+export { dataContext };

@@ -1,20 +1,28 @@
 import React, { useContext, useState } from "react";
-import { myContext } from "../contexts/myContext";
-
-const Input = () => {
-  const { addPerson, userName } = useContext(myContext);
-  const [person, setPerson] = useState({ title: "", description: "", tag: "" });
+import "./addnote.css";
+import { dataContext } from "../../contexts/MyContext";
+const Addnote = () => {
+  const { userName, addNote } = useContext(dataContext);
+  const [details, setDetails] = useState({
+    title: "",
+    description: "",
+    tag: "",
+  });
   const add = () => {
-    if (person.description === "" || person.title === "" || person.tag === "") {
+    if (
+      details.description === "" ||
+      details.title === "" ||
+      details.tag === ""
+    ) {
       alert("Plese Enter Details");
       return;
     }
-    addPerson(person.title, person.description, person.tag);
-    setPerson({ title: "", description: "", tag: "" });
+    addNote(details.title, details.description, details.tag);
+    setDetails({ title: "", description: "", tag: "" });
   };
 
   const onchage = (e) => {
-    setPerson({ ...person, [e.target.name]: e.target.value });
+    setDetails({ ...details, [e.target.name]: e.target.value });
   };
   return (
     <div className="input-div">
@@ -28,16 +36,16 @@ const Input = () => {
           type="text"
           className="input-details"
           name="title"
-          value={person.title}
+          value={details.title}
           onChange={onchage}
         ></input>
         <label className="input-labels">Description:</label>
         <textarea
-          rows="3"
+          rows="4"
           type="text"
           className="input-details"
           name="description"
-          value={person.description}
+          value={details.description}
           onChange={onchage}
         ></textarea>
         <label className="input-labels">Tag: </label>
@@ -45,10 +53,10 @@ const Input = () => {
           type="text"
           className="input-details"
           name="tag"
-          value={person.tag}
+          value={details.tag}
           onChange={onchage}
-        ></input>
-        <button type="button" className="addPerson-btn" onClick={add}>
+        />
+        <button type="button" className="adddetails-btn" onClick={add}>
           Add Note
         </button>
       </form>
@@ -56,4 +64,4 @@ const Input = () => {
   );
 };
 
-export default Input;
+export default Addnote;

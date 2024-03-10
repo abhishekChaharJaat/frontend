@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import "../css/signup.css";
+import "./signup.css";
 import { useNavigate } from "react-router-dom";
-import serverPort from "../contexts/serverports";
-import Loader from "../components/Loader";
-// import { Link } from "react-router-dom";
+import serverPort from "../../contexts/serverPorts";
+import Loader from "../loader/Loader";
 
-export default function Signup() {
+const Signup = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [credentials, setCredentials] = useState({
@@ -47,8 +46,8 @@ export default function Signup() {
 
       {!loading && (
         <div className="signup-box" onSubmit={handelSubmit}>
-          <form className="form signup">
-            <h2 className="formheading">Signup</h2>
+          <form className="signup-from">
+            <h3 className="formheading">Signup</h3>
             <input
               className="input"
               type="text"
@@ -81,16 +80,14 @@ export default function Signup() {
               onChange={onchange}
               placeholder="confirm password"
             />
-            <button type="submit" className="login-signup-btn">
+            <button type="submit" className="signup-btn">
               Signup
             </button>
-            {/* <p className="signup-link">
-            I already have an Account
-            <Link to="/login">login</Link>
-          </p> */}
           </form>
         </div>
       )}
     </div>
   );
-}
+};
+
+export default Signup;
